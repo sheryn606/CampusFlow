@@ -6,7 +6,7 @@ export default function DashboardLayout({ children, activePage, onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50/70">
       <Sidebar
         activePage={activePage}
         onNavigate={onNavigate}
@@ -14,18 +14,26 @@ export default function DashboardLayout({ children, activePage, onNavigate }) {
         setMobileOpen={setMobileOpen}
       />
 
+      {/* Offset for sidebar */}
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-30 h-[72px] bg-white/80 backdrop-blur-md border-b border-slate-200/80 flex items-center px-4 lg:hidden">
+        {/* Mobile top bar */}
+        <header className="sticky top-0 z-30 h-[68px] bg-white/90 backdrop-blur-md border-b border-slate-100 flex items-center px-4 lg:hidden shadow-sm shadow-slate-100/60">
           <button
             onClick={() => setMobileOpen(true)}
-            className="p-2 rounded-lg hover:bg-slate-100 text-slate-600"
+            className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 text-slate-600 transition-colors"
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="ml-3 font-semibold text-slate-800 text-[15px]">CampusFlow</span>
+          <div className="flex items-center gap-2 ml-3">
+            <span className="font-bold text-slate-900 text-[15px]">Campus</span>
+            <span className="font-bold text-violet-600 text-[15px] -ml-1.5">Flow</span>
+          </div>
         </header>
 
-        <main className="px-4 sm:px-6 lg:px-10 py-8 max-w-[1400px] mx-auto">{children}</main>
+        {/* Page content */}
+        <main className="px-4 sm:px-6 lg:px-10 py-8 max-w-[1280px] mx-auto">
+          {children}
+        </main>
       </div>
     </div>
   );
